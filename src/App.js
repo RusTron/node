@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
+import io from 'socket.io-client';
 import { Header } from './components/Header';
+import { Users } from './components/Users';
 import './App.scss';
+
+// const socket = io('http://localhost:5000/api');
+// console.log(socket);
 
 function App() {
   useEffect(() => {
@@ -12,8 +17,23 @@ function App() {
     fetchData();
   }, []);
 
+  const connectSocket = () => {
+    console.log(process.env.NODE_TASK_API_URL);
+    io(process.env.NODE_TASK_API_URL);
+  };
   return (
-    <Header />
+    <>
+      <Header />
+      <main className="main">
+        <Users />
+        <button
+          type="button"
+          onClick={connectSocket}
+        >
+          kjkjkjkj
+        </button>
+      </main>
+    </>
   );
 }
 
