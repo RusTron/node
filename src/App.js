@@ -1,37 +1,36 @@
 import React, { useEffect } from 'react';
-import io from 'socket.io-client';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from './store/reducers/usersReducer';
+import { loadingActions } from './store/reducers/loadingReducer';
+import socket from './socket';
 import { Header } from './components/Header';
 import { Users } from './components/Users';
+import { MessagesList } from './components/MessagesList';
+import { fetchData } from './api';
 import './App.scss';
 
-// const socket = io('http://localhost:5000/api');
-// console.log(socket);
-
 function App() {
+  const dispatch = useDispatch();
+
+  const dispatchMessage = (messageFromSocket) => {
+    dispatch(actionCreators.addMessage(messageFromSocket));
+  };
+
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch('http://localhost:5000/api');
-      const data = await res.json();
-      console.log(data);
-    }
-    fetchData();
+    dispatch(fetchData);
+    socket.on('Receive message', (messageFromSocket) => {
+      debugger; //eslint-disable-line
+      dispatchMessage(messageFromSocket);
+    });
+    dispatch(loadingActions.finishLoading());
   }, []);
 
-  const connectSocket = () => {
-    console.log(process.env.NODE_TASK_API_URL);
-    io(process.env.NODE_TASK_API_URL);
-  };
   return (
     <>
       <Header />
       <main className="main">
         <Users />
-        <button
-          type="button"
-          onClick={connectSocket}
-        >
-          kjkjkjkj
-        </button>
+        <MessagesList />
       </main>
     </>
   );
