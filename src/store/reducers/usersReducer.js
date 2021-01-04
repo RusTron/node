@@ -38,7 +38,6 @@ const initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-  debugger;//eslint-disable-line
   let users = [];
   switch (action.type) {
     case SETINTERLOCUTOR:

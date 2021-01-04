@@ -21,8 +21,8 @@ export const Users = () => {
     dispatch(actionCreators.setInterlocutorId(id));
   };
 
-  const chooseLastMessage = (message) => {
-    const messageText = Object.values(message)[0];
+  const chooseLastMessage = (userMessage) => {
+    const messageText = Object.values(userMessage)[0];
     return messageText.length > 30 ? `${messageText.slice(1, 30)}...` : messageText;
   };
 
@@ -54,7 +54,7 @@ export const Users = () => {
                 className="users__item user"
                 onClick={getDialog}
                 data-id={user.id}
-                key={console.log(user)}
+                key={user.id}
               >
                 {user.image ? (
                   <img

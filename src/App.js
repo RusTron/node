@@ -19,7 +19,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchData);
     socket.on('Receive message', (messageFromSocket) => {
-      debugger; //eslint-disable-line
       dispatchMessage(messageFromSocket);
     });
     dispatch(loadingActions.finishLoading());

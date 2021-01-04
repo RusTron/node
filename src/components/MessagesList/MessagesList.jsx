@@ -6,14 +6,15 @@ import './MessagesList.scss';
 
 export const MessagesList = () => {
   const interlocutorId = useSelector(({ users }) => users.interlocutorId);
-  console.log(interlocutorId);
+
   return (
     <div className="messages">
       <div className="messages__body">
         {interlocutorId && (
-          <Route path={`/${interlocutorId}`}>
-            <Dialog interlocutorId={interlocutorId} />
-          </Route>
+          <Route
+            path="/:interlocutorId?"
+            component={Dialog}
+          />
         )}
       </div>
     </div>

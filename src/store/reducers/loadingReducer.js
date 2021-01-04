@@ -6,7 +6,6 @@ export const loadingActions = {
 };
 
 const loadingReducer = (state = true, action) => {
-  debugger;//eslint-disable-line
   switch (action.type) {
     case STARTLOADING:
       return true;

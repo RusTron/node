@@ -30,7 +30,7 @@ const createName = () => (
 
 const createMessages = (time) => {
   const messages = [];
-  const messagesAmount = Math.ceil(Math.random() * 2);
+  const messagesAmount = Math.ceil(Math.random() * 3);
   for (let i = 0; i <= messagesAmount; i++) {
     const id = '_' + Math.random().toString(36).substr(2, 9);
     const type = messageTypes[Math.floor(Math.random() * 2)];
@@ -38,6 +38,7 @@ const createMessages = (time) => {
     const read = 'read';
     messages.push({ [type] : message, time, id, read })
   }
+
   return messages;
 }
 
