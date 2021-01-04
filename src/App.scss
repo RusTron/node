@@ -1,0 +1,11 @@
+@import "../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
+.main {
+  position: relative;
+  background-color: #fff;
+  display: grid;
+  width: 100%;
+  padding:  0 16px;
+  grid-template-columns: minmax(100px, 383px) minmax(300px, 1489px);
+  column-gap: 16px;
+}

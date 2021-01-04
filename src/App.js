@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { actionCreators } from './store/reducers/usersReducer';
+import { loadingActions } from './store/reducers/loadingReducer';
+import socket from './socket';
+import { Header } from './components/Header';
+import { Users } from './components/Users';
+import { MessagesList } from './components/MessagesList';
+import { fetchData } from './api';
+import './App.scss';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const dispatchMessage = (messageFromSocket) => {
+    dispatch(actionCreators.addMessage(messageFromSocket));
+  };
+
+  useEffect(() => {
+    dispatch(fetchData);
+    socket.on('Receive message', (messageFromSocket) => {
+      dispatchMessage(messageFromSocket);
+    });
+    dispatch(loadingActions.finishLoading());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main className="main">
+        <Users />
+        <MessagesList />
+      </main>
+    </>
   );
 }
 

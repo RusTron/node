@@ -1,0 +1,43 @@
+.message {
+
+  &__content {
+    border: 1px solid #D7DBE6;
+    max-width: 45%;
+    min-width: 140px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  &__content--sent {
+    color: '#009bb7';
+    background-color: #E5F3F8;
+    border-radius: 10px 10px 0px 10px;
+  }
+
+  &__content--received {
+    border-radius: 0px 10px 10px 10px;
+  }
+
+  &__text {
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    color: #182a40
+  }
+
+  &__info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__status {
+    margin-left: 8px;
+  }
+
+  &__time {
+    font-size: 14px;
+    line-height: 16px;
+    color: #c1c9da;
+  }
+}
